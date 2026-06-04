@@ -23,7 +23,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result) {
             matrix_t minor = {0};
             double det = 0.0;
 
-            flag = create_minor(A, &minor, i, j);
+            flag = s21_create_minor(A, &minor, i, j);
 
             if (flag == OK) {
               flag = s21_determinant(&minor, &det);

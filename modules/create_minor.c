@@ -1,6 +1,6 @@
 #include "../s21_matrix.h"
 
-int create_minor(matrix_t *A, matrix_t *minor, int row, int column) {
+int s21_create_minor(matrix_t *A, matrix_t *minor, int row, int column) {
   int flag = OK;
 
   flag = s21_create_matrix(A->rows - 1, A->columns - 1, minor);

@@ -1,6 +1,6 @@
 #include "../s21_matrix.h"
 
-static int determinant_recursive(matrix_t *A, int n, double *result);
+static int s21_determinant_recursive(matrix_t *A, int n, double *result);
 
 int s21_determinant(matrix_t *A, double *result) {
   int flag = OK;
@@ -13,13 +13,13 @@ int s21_determinant(matrix_t *A, double *result) {
     flag = CALC_ERROR;
 
   } else {
-    flag = determinant_recursive(A, A->rows, result);
+    flag = s21_determinant_recursive(A, A->rows, result);
   }
 
   return flag;
 }
 
-static int determinant_recursive(matrix_t *A, int n, double *result) {
+static int s21_determinant_recursive(matrix_t *A, int n, double *result) {
   int flag = OK;
 
   *result = 0.0;
@@ -36,10 +36,10 @@ static int determinant_recursive(matrix_t *A, int n, double *result) {
       matrix_t minor = {0};
       double minor_det = 0.0;
 
-      flag = create_minor(A, &minor, 0, j);
+      flag = s21_create_minor(A, &minor, 0, j);
 
       if (flag == OK) {
-        flag = determinant_recursive(&minor, n - 1, &minor_det);
+        flag = s21_determinant_recursive(&minor, n - 1, &minor_det);
 
         if (flag == OK) {
           double sign = (j % 2 == 0) ? 1.0 : -1.0;

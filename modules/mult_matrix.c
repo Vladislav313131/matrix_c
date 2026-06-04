@@ -1,6 +1,6 @@
 #include "../s21_matrix.h"
 
-static double count_matrix(int i, int j, matrix_t *A, matrix_t *B);
+static double s21_count_matrix(int i, int j, matrix_t *A, matrix_t *B);
 
 int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   int flag = OK;
@@ -22,7 +22,7 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
     } else {
       for (int i = 0; i < result->rows && flag == OK; i++) {
         for (int j = 0; j < result->columns && flag == OK; j++) {
-          double value = count_matrix(i, j, A, B);
+          double value = s21_count_matrix(i, j, A, B);
 
           if (isfinite(value)) {
             result->matrix[i][j] = value;
@@ -38,7 +38,7 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   return flag;
 }
 
-static double count_matrix(int i, int j, matrix_t *A, matrix_t *B) {
+static double s21_count_matrix(int i, int j, matrix_t *A, matrix_t *B) {
   double res = 0.0;
 
   for (int k = 0; k < A->columns; k++) {
